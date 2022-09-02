@@ -33,9 +33,9 @@ object Utils {
 
     //Json to Object
     fun <T> Response<ResponseBody>.getObjectBody(className: Class<T>): T {
-        val body = this.body()?.string()
+        val body = this.body()!!.string()
         val json = JSONObject(body)
-        val user = json.optJSONObject("data").optJSONObject("user")
+        val user = json.optJSONObject("data")/*.optJSONObject("user")*/
         val objectMapper = ObjectMapper();
         val model: T =
             objectMapper.readValue(user.toString(), className)
